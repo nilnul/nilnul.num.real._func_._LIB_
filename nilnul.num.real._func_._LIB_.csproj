@@ -1,7 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\..\(packages)\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\..\(packages)\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="..\..\.deps\EntityFramework.6.5.1\build\EntityFramework.props" Condition="Exists('..\..\.deps\EntityFramework.6.5.1\build\EntityFramework.props')" />
+  <!--<Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" />-->
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Deterministic>false</Deterministic>
+  </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -10,7 +14,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>nilnul.num.real.func</RootNamespace>
     <AssemblyName>nilnul.num.real._func_._LIB_</AssemblyName>
-    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <NuGetPackageImportStamp>
@@ -99,6 +103,30 @@
     <!--<LangVersion>latest</LangVersion>-->
     <!--<LangVersion>preview</LangVersion>-->
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dev2nuget|AnyCPU'">
+    <OutputPath>bin\Dev2nuget\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <!--<LangVersion>7.3</LangVersion>-->
+    <!--<LangVersion>default</LangVersion>-->
+    <LangVersion>latest</LangVersion>
+    <!--<LangVersion>preview</LangVersion>-->
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Sym2nuget|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Sym2nuget\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <!--<LangVersion>default</LangVersion>-->
+    <LangVersion>latest</LangVersion>
+    <!--<LangVersion>preview</LangVersion>-->
+  </PropertyGroup>
   <PropertyGroup>
     <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
   </PropertyGroup>
@@ -108,127 +136,445 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>t.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <PropertyGroup>
+    <PackageLicenseFile>License.txt</PackageLicenseFile>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-      <HintPath>..\..\(packages)\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="nilnul.num.real._matrix_._LIB_, Version=1.1.0.1, Culture=neutral, PublicKeyToken=085f320e4a727230, processorArchitecture=MSIL">
+      <HintPath>..\..\.deps\nilnul.num.real._matrix_._LIB_.1.1.250321.162117\lib\net48\nilnul.num.real._matrix_._LIB_.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-      <HintPath>..\..\(packages)\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\_TEST_\packages\Newtonsoft.Json.13.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="nilnul.collection_._discrete_._LIB_, Version=1.1.0.1, Culture=neutral, PublicKeyToken=085f320e4a727230, processorArchitecture=MSIL">
-      <HintPath>..\_TEST_\packages\nilnul.collection_._discrete_._LIB_.1.1.220728.140313\lib\net48\nilnul.collection_._discrete_._LIB_.dll</HintPath>
+    <Reference Include="nilnul.num.real._stream_._LIB_, Version=1.0.0.0, Culture=neutral, PublicKeyToken=085f320e4a727230, processorArchitecture=MSIL">
+      <HintPath>..\..\.deps\nilnul.num.real._stream_._LIB_.1.0.250211.94435\lib\net48\nilnul.num.real._stream_._LIB_.dll</HintPath>
     </Reference>
     <Reference Include="nilnul.num._integer_._LIB_, Version=1.1.0.1, Culture=neutral, PublicKeyToken=085f320e4a727230, processorArchitecture=MSIL">
-      <HintPath>..\_TEST_\packages\nilnul.num._integer_._LIB_.1.1.220905.105721\lib\net481\nilnul.num._integer_._LIB_.dll</HintPath>
+      <HintPath>..\..\.deps\nilnul.num._integer_._LIB_.1.1.250329.142625\lib\net48\nilnul.num._integer_._LIB_.dll</HintPath>
     </Reference>
     <Reference Include="nilnul.num._quotient_._LIB_, Version=1.1.0.1, Culture=neutral, PublicKeyToken=085f320e4a727230, processorArchitecture=MSIL">
-      <HintPath>..\_TEST_\packages\nilnul.num._quotient_._LIB_.1.1.220926.131208\lib\net481\nilnul.num._quotient_._LIB_.dll</HintPath>
+      <HintPath>..\..\.deps\nilnul.num._quotient_._LIB_.1.1.250320.22916\lib\net48\nilnul.num._quotient_._LIB_.dll</HintPath>
     </Reference>
     <Reference Include="nilnul.num._real_._LIB_, Version=2.1.0.1, Culture=neutral, PublicKeyToken=085f320e4a727230, processorArchitecture=MSIL">
-      <HintPath>..\_TEST_\packages\nilnul.num._real_._LIB_.2.1.220818.53104\lib\net48\nilnul.num._real_._LIB_.dll</HintPath>
+      <HintPath>..\..\.deps\nilnul.num._real_._LIB_.2.1.250328.63905\lib\net48\nilnul.num._real_._LIB_.dll</HintPath>
     </Reference>
     <Reference Include="nilnul._bit_._LIB_, Version=1.1.0.1, Culture=neutral, PublicKeyToken=085f320e4a727230, processorArchitecture=MSIL">
-      <HintPath>..\_TEST_\packages\nilnul._bit_._LIB_.1.1.221129.150825\lib\net481\nilnul._bit_._LIB_.dll</HintPath>
+      <HintPath>..\..\.deps\nilnul._bit_._LIB_.1.1.250403.95517\lib\net48\nilnul._bit_._LIB_.dll</HintPath>
     </Reference>
     <Reference Include="nilnul._character_._LIB_, Version=2.1.8387.39356, Culture=neutral, PublicKeyToken=085f320e4a727230, processorArchitecture=MSIL">
-      <HintPath>..\_TEST_\packages\nilnul._character_._LIB_.2.1.221218.135114\lib\net481\nilnul._character_._LIB_.dll</HintPath>
+      <HintPath>..\..\.deps\nilnul._character_._LIB_.2.1.250403.154606\lib\net48\nilnul._character_._LIB_.dll</HintPath>
     </Reference>
     <Reference Include="nilnul._num_._LIB_, Version=1.1.0.1, Culture=neutral, PublicKeyToken=085f320e4a727230, processorArchitecture=MSIL">
-      <HintPath>..\_TEST_\packages\nilnul._num_._LIB_.1.1.220826.15831\lib\net481\nilnul._num_._LIB_.dll</HintPath>
+      <HintPath>..\..\.deps\nilnul._num_._LIB_.1.1.241212.85916\lib\net48\nilnul._num_._LIB_.dll</HintPath>
     </Reference>
     <Reference Include="nilnul._num_._LINQ_, Version=1.1.0.1, Culture=neutral, PublicKeyToken=085f320e4a727230, processorArchitecture=MSIL">
-      <HintPath>..\_TEST_\packages\nilnul._num_._LINQ_.1.1.220825.155237\lib\net481\nilnul._num_._LINQ_.dll</HintPath>
+      <HintPath>..\..\.deps\nilnul._num_._LINQ_.1.1.241212.85916\lib\net48\nilnul._num_._LINQ_.dll</HintPath>
     </Reference>
     <Reference Include="nilnul._obj_._LIB_, Version=1.2.0.0, Culture=neutral, PublicKeyToken=085f320e4a727230, processorArchitecture=MSIL">
-      <HintPath>..\_TEST_\packages\nilnul._obj_._LIB_.1.2.221230.134914\lib\net481\nilnul._obj_._LIB_.dll</HintPath>
+      <HintPath>..\..\.deps\nilnul._obj_._LIB_.1.2.250411.55254\lib\net48\nilnul._obj_._LIB_.dll</HintPath>
     </Reference>
     <Reference Include="nilnul._rel_._LIB_, Version=1.2.0.1, Culture=neutral, PublicKeyToken=085f320e4a727230, processorArchitecture=MSIL">
-      <HintPath>..\_TEST_\packages\nilnul._rel_._LIB_.1.2.220817.152548\lib\net48\nilnul._rel_._LIB_.dll</HintPath>
+      <HintPath>..\..\.deps\nilnul._rel_._LIB_.1.2.250317.44327\lib\net48\nilnul._rel_._LIB_.dll</HintPath>
     </Reference>
     <Reference Include="nilnul._set_._LIB_, Version=1.1.0.1, Culture=neutral, PublicKeyToken=085f320e4a727230, processorArchitecture=MSIL">
-      <HintPath>..\_TEST_\packages\nilnul._set_._LIB_.1.1.220905.140119\lib\net481\nilnul._set_._LIB_.dll</HintPath>
+      <HintPath>..\..\.deps\nilnul._set_._LIB_.1.1.250118.94723\lib\net48\nilnul._set_._LIB_.dll</HintPath>
     </Reference>
     <Reference Include="nilnul._txt_._LIB_, Version=1.1.0.1, Culture=neutral, PublicKeyToken=085f320e4a727230, processorArchitecture=MSIL">
-      <HintPath>..\_TEST_\packages\nilnul._txt_._LIB_.1.1.221218.142109\lib\net481\nilnul._txt_._LIB_.dll</HintPath>
+      <HintPath>..\..\.deps\nilnul._txt_._LIB_.1.1.250407.50617\lib\net48\nilnul._txt_._LIB_.dll</HintPath>
+    </Reference>
+    <Reference Include="nilnul._xml_._LIB_, Version=1.1.0.1, Culture=neutral, PublicKeyToken=085f320e4a727230, processorArchitecture=MSIL">
+      <HintPath>..\..\.deps\nilnul._xml_._LIB_.1.1.250227.70442\lib\net48\nilnul._xml_._LIB_.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <HintPath>..\..\(packages)\System.Linq.Expressions.4.3.0\lib\net463\System.Linq.Expressions.dll</HintPath>
+    <Reference Include="System.Buffers, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\.deps\System.Buffers.4.6.1\lib\net462\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=9.0.0.4, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\.deps\System.Collections.Immutable.9.0.4\lib\net462\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.NonGeneric, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\.deps\System.Collections.NonGeneric.4.3.0\lib\net46\System.Collections.NonGeneric.dll</HintPath>
+      <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>packages\System.Linq.Expressions.4.3.0\lib\net463\System.Linq.Expressions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\.deps\System.Memory.4.6.3\lib\net462\System.Memory.dll</HintPath>
+    </Reference>
     <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\.deps\System.Numerics.Vectors.4.6.1\lib\net462\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.RegularExpressions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\.deps\System.Text.RegularExpressions.4.3.1\lib\net463\System.Text.RegularExpressions.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.ReaderWriter, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\.deps\System.Xml.ReaderWriter.4.3.1\lib\net46\System.Xml.ReaderWriter.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="_nilnul_._LIB_, Version=1.1.0.1, Culture=neutral, PublicKeyToken=085f320e4a727230, processorArchitecture=MSIL">
-      <HintPath>..\_TEST_\packages\_nilnul_._LIB_.1.1.220819.143251\lib\net481\_nilnul_._LIB_.dll</HintPath>
+      <HintPath>..\..\.deps\_nilnul_._LIB_.1.1.241016.32119\lib\net48\_nilnul_._LIB_.dll</HintPath>
     </Reference>
     <Reference Include="_nilnul_._LINQ_, Version=1.1.0.1, Culture=neutral, PublicKeyToken=085f320e4a727230, processorArchitecture=MSIL">
-      <HintPath>..\_TEST_\packages\_nilnul_._LINQ_.1.1.220819.143032\lib\net481\_nilnul_._LINQ_.dll</HintPath>
+      <HintPath>..\..\.deps\_nilnul_._LINQ_.1.1.241016.32253\lib\net48\_nilnul_._LINQ_.dll</HintPath>
     </Reference>
     <!--<Reference Include="_nilnul_._CFG_, Version=1.0.7272.42050, Culture=neutral, processorArchitecture=MSIL" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <HintPath>..\..\(packages)\_nilnul_._CFG_.1.0.7272.42050\lib\net46\_nilnul_._CFG_.dll</HintPath>
+  <HintPath>packages\_nilnul_._CFG_.1.0.7272.42050\lib\net46\_nilnul_._CFG_.dll</HintPath>
 </Reference>-->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="deriv_\IBasic.cs" />
+    <Compile Include="deriv_\IFirst.cs" />
+    <Compile Include="deriv_\IRecur.cs" />
+    <Compile Include="deriv_\ISecondary.cs" />
+    <Compile Include="IDerivative.cs" />
+    <Compile Include="ISrc.cs" />
+    <Compile Include="nilnul0\num\real\fn\src\be_\ICriticalPoint.cs" />
+    <Compile Include="nilnul0\num\real\fn\src\be_\IInflection.cs" />
+    <Compile Include="nilnul0\num\real\fn\src\be_\IStationary.cs" />
+    <Compile Include="nilnul0\num\real\fn_\eg_\_HeavesideX.cs" />
+    <Compile Include="nilnul0\num\real\fn_\eg_\_SignX.cs" />
+    <Compile Include="nilnul0\num\real\fn_\IMonomial.cs" />
+    <Compile Include="nilnul0\num\real\fn_\polynomial\be_\IBinomial.cs" />
+    <Compile Include="nilnul0\num\real\fn_\polynomial\be_\IBivariate.cs" />
+    <Compile Include="nilnul0\num\real\fn_\polynomial\be_\ITrinomial.cs" />
+    <Compile Include="nilnul0\num\real\fn_\polynomial_\IBinomial.cs" />
+    <Compile Include="nilnul0\num\real\fn_\polynomial_\INil.cs" />
+    <Compile Include="nilnul0\num\real\fn_\polynomial_\IUnivariate.cs" />
+    <Compile Include="nilnul0\num\real\fn_\strict\solve_\_Newton9raphsonX - Copy.cs" />
+    <Compile Include="nilnul0\num\real\fn_\_LogitX.cs" />
+    <Compile Include="nilnul0\num\real\fn_\_polynomial\IMonomial.cs" />
+    <Compile Include="nilnul0\num\real\fn_\_polynomial\_monomial_\ICoefficient.cs" />
+    <Compile Include="nilnul0\num\real\fn_\_polynomial\_monomial\IPow.cs" />
+    <Compile Include="nilnul0\num\real\fn_\_polynomial\_monomial\pows\IProduct.cs" />
+    <Compile Include="nilnul0\num\real\fn_\_polynomial\_monomial_\IProductOfPows.cs" />
+    <Compile Include="nilnul0\num\real\func_\uxp_\defer_\IContinuous.cs" />
+    <Compile Include="nilnul0\num\real\func_\uxp_\prior_\IContinuous.cs" />
+    <Compile Include="src\deriv1sts\be_\IDifferential4each.cs" />
+    <Compile Include="src\deriv1st_\IDirectional.cs" />
+    <Compile Include="src\deriv2nds\hessian\be_\ISymmetric.cs" />
+    <Compile Include="src\deriv2nds\IHessianMatrix.cs" />
+    <Compile Include="src\deriv2nds_\mixed\be_\contin\so_\Schwarz.cs" />
+    <Compile Include="src\deriv2nds_\mixed\be_\IShuffleable.cs" />
+    <Compile Include="src\deriv2nds_\mixed\be_\_shuffleable_\by_\InterchangeOfLimit.cs" />
+    <Compile Include="src\deriv2nds_\mixed\be_\_shuffleable_\ex_\FroPeano.cs" />
+    <Compile Include="src\deriv2nd_\mixed\be_\IShuffleable.cs" />
+    <Compile Include="src\deriv_\ISecondary.cs" />
+    <Compile Include="src\IBe.cs" />
+    <Compile Include="src\IDerivativeAtSomeOrder.cs" />
+    <Compile Include="src\IGradient.cs" />
+    <Compile Include="ISolve.cs" />
+    <Compile Include="nilnul0\num\real\expr_\algebraic_\IQuadratic.cs" />
+    <Compile Include="nilnul0\num\real\expr_\algebraic_\quadratic\PositiveDefinite.cs" />
+    <Compile Include="nilnul0\num\real\fns\uxp_\prior_\ICardinal.cs" />
+    <Compile Include="nilnul0\num\real\fn\src\be_\conduct_\Curvaous.cs" />
+    <Compile Include="nilnul0\num\real\fn\be_\Elementary.cs" />
+    <Compile Include="nilnul0\num\real\fn\be_\IAnalytic.cs" />
+    <Compile Include="nilnul0\num\real\fn\be_\IClosedForm.cs" />
+    <Compile Include="nilnul0\num\real\fn\src\be_\IConductive.cs" />
+    <Compile Include="nilnul0\num\real\fn\be_\IPiecewise.cs" />
+    <Compile Include="nilnul0\num\real\fn\src\be_\ISmooth.cs" />
+    <Compile Include="nilnul0\num\real\fn\be_\piecewise_\IContinous.cs" />
+    <Compile Include="nilnul0\num\real\fn\calc_\unary_\derive_\overtime\Phrase.cs" />
+    <Compile Include="nilnul0\num\real\fn\co\InnerProduct.cs" />
+    <Compile Include="nilnul0\num\real\fn\co\innerProd_\RetXpn.cs" />
+    <Compile Include="nilnul0\num\real\fn\co\LossFunction.cs" />
+    <Compile Include="nilnul0\num\real\fn\deriv\IAcceleration.cs" />
+    <Compile Include="nilnul0\num\real\fn\deriv\force\jolt\jounce\ICrackle.cs" />
+    <Compile Include="nilnul0\num\real\fn\deriv\force\IJolt.cs" />
+    <Compile Include="nilnul0\num\real\fn\deriv\force\jolt\IJounce.cs" />
+    <Compile Include="nilnul0\num\real\fn\deriv\force\jolt\jounce\crackle\IPop.cs" />
+    <Compile Include="nilnul0\num\real\fn\ISolve.cs" />
+    <Compile Include="nilnul0\num\real\fn\op_\IDerivative.cs" />
+    <Compile Include="nilnul0\num\real\fn\re_\eq8quotient\so_\Eq.cs" />
+    <Compile Include="nilnul0\num\real\fn\re_\IEqAtQuotient.cs" />
+    <Compile Include="nilnul0\num\real\fn\set\ICardinal.cs" />
+    <Compile Include="nilnul0\num\real\fn\stream_\IDrac.cs" />
+    <Compile Include="nilnul0\num\real\fn\stream_\_dirac\Term.cs" />
+    <Compile Include="nilnul0\num\real\fn_\abnorm_\eg_\ICantor.cs" />
+    <Compile Include="nilnul0\num\real\fn_\algebraic_\IClosedForm.cs" />
+    <Compile Include="nilnul0\num\real\fn_\algebraic_\INonClosedForm.cs" />
+    <Compile Include="nilnul0\num\real\fn_\algebraic_\unclosable_\eg_\IBringRadical.cs" />
+    <Compile Include="nilnul0\num\real\fn_\analytic_\ITranscendental.cs" />
+    <Compile Include="nilnul0\num\real\fn_\claspy_\continuous\be_\_integral_\by_\BoundedVariation.cs" />
+    <Compile Include="nilnul0\num\real\fn_\claspy_\continuous\theorem_\IBounded.cs" />
+    <Compile Include="nilnul0\num\real\fn_\claspy_\continuous\theorem_\IExtremeValue.cs" />
+    <Compile Include="nilnul0\num\real\fn_\claspy_\continuous\theorem_\Integrable.cs" />
+    <Compile Include="nilnul0\num\real\fn_\claspy_\continuous\theorem_\Uniformy.cs" />
+    <Compile Include="nilnul0\num\real\fn_\claspy_\continuous\theorem_\_integrable\OnUniformy.cs" />
+    <Compile Include="nilnul0\num\real\fn_\claspy_\continuous\_integral\darboux\be_\IIntegratible.cs" />
+    <Compile Include="nilnul0\num\real\fn_\claspy_\continuous\_integral\darboux\be_\_same_\by_\IISupremumLtInfimum9epsilon.cs" />
+    <Compile Include="nilnul0\num\real\fn_\claspy_\continuous\_integral\darboux\theorem_\InfimumLeSupremum.cs" />
+    <Compile Include="nilnul0\num\real\fn_\claspy_\continuous\_integral\darboux_\IInfimum.cs" />
+    <Compile Include="nilnul0\num\real\fn_\claspy_\continuous\_integral\darboux_\ISupremum.cs" />
+    <Compile Include="nilnul0\num\real\fn_\claspy_\continuous\_integral\IDarboux.cs" />
+    <Compile Include="nilnul0\num\real\fn_\claspy_\continuous_\IDerivatible8Inner.cs" />
+    <Compile Include="nilnul0\num\real\fn_\claspy_\continuous_\IIntegrable.cs" />
+    <Compile Include="nilnul0\num\real\fn_\claspy_\continuous\theorem_\DeriveOfIntegral.cs" />
+    <Compile Include="nilnul0\num\real\fn_\claspy_\continuous_\IQuasislopy8inner.cs" />
+    <Compile Include="nilnul0\num\real\fn_\claspy_\continuous_\ISlopy8inner.cs" />
+    <Compile Include="nilnul0\num\real\fn_\claspy_\continuous_\monotonic\theorem_\IIntegratible.cs" />
+    <Compile Include="nilnul0\num\real\fn_\claspy_\continuous_\quasislopy8inner\be_\InnerSlopy.cs" />
+    <Compile Include="nilnul0\num\real\fn_\claspy_\continuous_\slopy8inner\theorem_\IRolle.cs" />
+    <Compile Include="nilnul0\num\real\fn_\claspy_\continuous_\quasislopy8inner\theorem_\IRolleGeneralized.cs" />
+    <Compile Include="nilnul0\num\real\fn_\claspy_\continuous_\slopy8inner\theorem_\LagrangeMeanValue.cs" />
+    <Compile Include="nilnul0\num\real\fn\IDerivative.cs" />
+    <Compile Include="nilnul0\num\real\fn\op_\Step.cs" />
+    <Compile Include="nilnul0\num\real\fn\seq\be_\Orthonorm.cs" />
+    <Compile Include="nilnul0\num\real\fn\seq_\orthonorm\be_\Complete.cs" />
+    <Compile Include="nilnul0\num\real\fn\seq_\orthonorm_\complete\ExpandPiecewiseContinuous.cs" />
+    <Compile Include="nilnul0\num\real\fn\seq_\orthonorm_\complete\expand_\IPiecewiseContinouse.cs" />
+    <Compile Include="nilnul0\num\real\fn\seq_\orthonorm_\complete\expand_\pwc\be_\ElSqConverge.cs" />
+    <Compile Include="nilnul0\num\real\fn\seq_\orthonorm_\complete\expand_\pwc\be_\PointwiseConverge.cs" />
+    <Compile Include="nilnul0\num\real\fn\seq_\orthonorm_\complete_\CosSin.cs" />
+    <Compile Include="nilnul0\num\real\fn\seq_\orthonorm_\complete_\fourier\expand\at_\IDiscontinuity.cs" />
+    <Compile Include="nilnul0\num\real\fn\seq_\orthonorm_\CosSin.cs" />
+    <Compile Include="nilnul0\num\real\fn\seq_\orthonorm_\Cos.cs" />
+    <Compile Include="nilnul0\num\real\fn\seq_\orthonorm_\Incomplete.cs" />
+    <Compile Include="nilnul0\num\real\fn\seq_\orthonorm_\incomplete_\ICoses.cs" />
+    <Compile Include="nilnul0\num\real\fn_\between_\convex\IMin.cs" />
+    <Compile Include="nilnul0\num\real\fn_\between_\convex\min\ISolve.cs" />
+    <Compile Include="nilnul0\num\real\fn_\between_\convex\min\_slv_\by_\_FibonacciX.cs" />
+    <Compile Include="nilnul0\num\real\fn_\claspy\be_\IContinuous.cs" />
+    <Compile Include="nilnul0\num\real\fn_\claspy\be_\slopy8inner_\Differentiable.cs" />
+    <Compile Include="nilnul0\num\real\fn_\claspy\be_\ISlopy8inner.cs" />
+    <Compile Include="nilnul0\num\real\fn_\claspy_\continuous\theorem_\IIntermediateValue.cs" />
+    <Compile Include="nilnul0\num\real\fn_\claspy_\continuous_\slopy8inner_\ISlopy8inside.cs" />
+    <Compile Include="nilnul0\num\real\fn_\claspy_\continuous_\slopy8inner_\xpn_\eg_\Abs.cs" />
+    <Compile Include="nilnul0\num\real\fn_\claspy_\continuous_\xpn_\INonIntegrable.cs" />
+    <Compile Include="nilnul0\num\real\fn_\claspy_\IDerivatible.cs" />
+    <Compile Include="nilnul0\num\real\fn_\claspy_\IDifferentiable.cs" />
+    <Compile Include="nilnul0\num\real\fn_\claspy_\derivatible\theorem_\IntegralOfDerivative.cs" />
+    <Compile Include="nilnul0\num\real\fn_\claspy_\IIntegrable.cs" />
+    <Compile Include="nilnul0\num\real\fn_\claspy_\integrable_\IContinuous.cs" />
+    <Compile Include="nilnul0\num\real\fn_\continuous\be_\AntiUniformy.cs" />
+    <Compile Include="nilnul0\num\real\fn_\continuous\be_\Uniformly.cs" />
+    <Compile Include="nilnul0\num\real\fn_\continuous\ISolve.cs" />
+    <Compile Include="nilnul0\num\real\fn_\continuous\satisfic_\Addable.cs" />
+    <Compile Include="nilnul0\num\real\fn_\continuous\collective\ICardinal.cs" />
+    <Compile Include="nilnul0\num\real\fn_\continuous\to_\IDerivative.cs" />
+    <Compile Include="nilnul0\num\real\fn_\convex\IMin.cs" />
+    <Compile Include="nilnul0\num\real\fn_\convex\min\ISrc.cs" />
+    <Compile Include="nilnul0\num\real\fn_\cubic_\Depressed.cs" />
+    <Compile Include="nilnul0\num\real\fn_\cubic_\depressed\of_\OfGeneral.cs" />
+    <Compile Include="nilnul0\num\real\fn_\cubic_\LeadingCoefIsOne.cs" />
+    <Compile Include="nilnul0\num\real\fn_\continuous_\nonderive8some_\eg_\SqMultiSinInverse.cs" />
+    <Compile Include="nilnul0\num\real\fn_\eg_\TotientAsmptotic.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental\bi_\IArithmetic.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental\bi_\IComposition.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental\IOp.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental\op_\IDifferentiation.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental\op_\uxp_\IInverse.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental\op_\uxp_\IIntegral.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental\op_\uxp_\ISigma.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental\to_\IIntegral.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental\to_\IInvert.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental_\basic_\IAlgebraic.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental_\basic_\IConstant.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental_\basic_\IHyperbolic.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental_\IBasic.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental_\basic_\IExponential.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental_\INonbasic.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental_\IUxp.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental_\IXpn.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental_\nonbasic_\arithmetic_\IMonomial.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental_\nonbasic_\arithmetic_\IPolynomial.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental_\nonbasic_\arithmetic_\IPonent.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental_\nonbasic_\arithmetic_\IRationale.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental_\nonbasic_\arithmetic_\IReciprocal.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental_\nonbasic_\IArithmetic.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental_\nonbasic_\IComposition.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental_\nonbasic_\IInversal.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental_\basic_\inversal_\IArcHyper.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental_\basic_\inversal_\IArcTrig.cs" />
+    <Compile Include="nilnul0\num\real\fn_\IAlgebraic.cs" />
+    <Compile Include="nilnul0\num\real\fn_\IClosedForm.cs" />
+    <Compile Include="nilnul0\num\real\fn_\IHyperbolic.cs" />
+    <Compile Include="nilnul0\num\real\fn_\IOpenForm.cs" />
+    <Compile Include="nilnul0\num\real\fn_\IPathological.cs" />
+    <Compile Include="nilnul0\num\real\fn_\IRationale.cs" />
+    <Compile Include="nilnul0\num\real\fn_\ITranscendental.cs" />
+    <Compile Include="nilnul0\num\real\fn_\IUnAlgebraic.cs" />
+    <Compile Include="nilnul0\num\real\fn_\IUnAnalytic.cs" />
+    <Compile Include="nilnul0\num\real\fn_\IUnElementary.cs" />
+    <Compile Include="nilnul0\num\real\fn_\monotone_\strict\ISolve.cs" />
+    <Compile Include="nilnul0\num\real\fn_\unelem_\ILambertPrior2inverse.cs" />
+    <Compile Include="nilnul0\num\real\fn_\unelem_\InvLambert.cs" />
+    <Compile Include="nilnul0\num\real\fn_\unelem_\lambert\ISolve.cs" />
+    <Compile Include="nilnul0\num\real\fn_\unelem_\lambert_\IErgodic.cs" />
+    <Compile Include="nilnul0\num\real\fn_\unelem_\lambert_\IUnderBranch.cs" />
+    <Compile Include="nilnul0\num\real\fn_\unelem_\_LambertDoubleauX.cs" />
+    <Compile Include="nilnul0\num\real\fn_\_LogSuccessorX.cs" />
+    <Compile Include="nilnul0\num\real\fn_\unelem_\ILambert.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental_\basic_\inversal_\ILogarithm.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental_\basic_\ITrigonometric.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental_\basic_\inversal_\IRoot.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental_\nonbasic_\inversal_\ISolventOfPolynomial.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental_\uxp_\broken_\IStepFunction.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental_\uxp_\IAbsolute.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental_\uxp_\IDiscontinuous.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental_\xpn_\IGammaFunction.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental_\xpn_\IIntegral.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental_\xpn_\IIrrationalPow.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental_\xpn_\integral_\IErf.cs" />
+    <Compile Include="nilnul0\num\real\fn_\IAnalytic.cs" />
+    <Compile Include="nilnul0\num\real\fn_\IClaspy.cs" />
+    <Compile Include="nilnul0\num\real\fn_\IPieceWiseContinuous.cs" />
+    <Compile Include="nilnul0\num\real\fn_\IPolynomial.cs" />
+    <Compile Include="nilnul0\num\real\fn_\IQuadratic.cs" />
+    <Compile Include="nilnul0\num\real\fn_\morph_\biject_\isoord_\eg_\ArctgNormalized.cs" />
+    <Compile Include="nilnul0\num\real\fn_\odd_\pwc_\SinHalf.cs" />
+    <Compile Include="nilnul0\num\real\fn_\odd_\pwc_\sinHalf\expand_\Fourier.cs" />
+    <Compile Include="nilnul0\num\real\fn_\polynomial_\IHeptic.cs" />
+    <Compile Include="nilnul0\num\real\fn_\polynomial_\IHexic.cs" />
+    <Compile Include="nilnul0\num\real\fn_\polynomial_\IQuintic.cs" />
+    <Compile Include="nilnul0\num\real\fn_\polynomial_\ISecondOrder.cs" />
+    <Compile Include="nilnul0\num\real\fn_\linear\_SolveX.cs" />
+    <Compile Include="nilnul0\num\real\fn_\cubic\_SolveX.cs" />
+    <Compile Include="nilnul0\num\real\xt\fn_\eg_\Dirac8dbl.cs" />
+    <Compile Include="nilnul0\num\real\xt\fn_\IIntegrable.cs" />
+    <Compile Include="nilnul0\num\real_\unneg\fn_\increase_\polyline_\IOriginated.cs" />
+    <Compile Include="nilnul0\num\real\fn_\quadratic\_SolveX.cs" />
+    <Compile Include="nilnul0\num\real\fn_\pwc\expand_\Fourier.cs" />
+    <Compile Include="nilnul0\num\real\fn_\pwc_\SinHalf.cs" />
+    <Compile Include="nilnul0\num\real\fn_\pwc_\sinHalf\expand_\Fourier.cs" />
+    <Compile Include="nilnul0\num\real\expr_\var\approach\IDifferential.cs" />
+    <Compile Include="nilnul0\num\real\expr_\var\IApproach.cs" />
+    <Compile Include="nilnul0\num\real\xt\fn_\Sinc.cs" />
+    <Compile Include="nilnul0\num\real\fn_\quartic_\BiQuadratic.cs" />
+    <Compile Include="nilnul0\num\real\fn_\quartic_\Depressed.cs" />
+    <Compile Include="nilnul0\num\real\fn_\quartic_\depressed_\nonbiquad\Solve.cs" />
+    <Compile Include="nilnul0\num\real\func_\algebraic_\IBinomial.cs" />
+    <Compile Include="nilnul0\num\real\func_\algebraic_\IMonomial.cs" />
+    <Compile Include="nilnul0\num\real\func_\algebraic_\ITrinomial.cs" />
+    <Compile Include="nilnul0\num\real\func_\algebraic_\IZero.cs" />
+    <Compile Include="nilnul0\num\real\func_\IAnalytic.cs" />
     <Compile Include="nilnul0\num\real\func_\IElementary.cs" />
     <Compile Include="nilnul0\num\real\func_\IPolynomial.cs" />
     <Compile Include="nilnul0\num\real\func_\IRational.cs" />
-    <Compile Include="nilnul0\num\real\func_\unary\IBorderied.cs" />
-    <Compile Include="nilnul0\num\real\func_\unary\ISpanned.cs" />
-    <Compile Include="nilnul0\num\real\func_\unary\IIntervaled.cs" />
-    <Compile Include="nilnul0\num\real\func_\unary\intervaled\Integral.cs" />
-    <Compile Include="nilnul0\num\real\func_\unary\Spanned4dblI.cs" />
-    <Compile Include="nilnul0\num\real\func_\unary\neighbored_\Integrable4dblI.cs" />
-    <Compile Include="nilnul0\num\real\func_\unary\neighbored_\integrable\_IntegralX.cs" />
-    <Compile Include="nilnul0\num\real\func_\unary\neighbored_\integrable\_MeanX.cs" />
-    <Compile Include="nilnul0\num\real\func_\unary\neighbored_\IIntegralable.cs" />
-    <Compile Include="nilnul0\num\real\func_\unary\neighbored_\_integrable_\Antiderivative4dblI.cs" />
-    <Compile Include="nilnul0\num\real\func_\unary\stream\series_\Weierstrass.cs" />
-    <Compile Include="nilnul0\num\real\func_\unary\_neighbored_\Neighbor4dblI.cs" />
-    <Compile Include="nilnul0\num\real\func_\unary_\DerivableI.cs" />
-    <Compile Include="nilnul0\num\real\func_\unary_\elemental\neighbored\antideriv_\ByRischAlgo.cs" />
-    <Compile Include="nilnul0\num\real\func_\unary_\IElementary.cs" />
-    <Compile Include="nilnul0\num\real\func_\unary_\IIntegrable.cs" />
-    <Compile Include="nilnul0\num\real\func_\unary_\mount_\Highland.cs" />
-    <Compile Include="nilnul0\num\real\func_\unary_\_derivable_\Derivative4dblI.cs" />
-    <Compile Include="nilnul0\num\real\func_\unary\be_\DerivableI.cs" />
-    <Compile Include="nilnul0\num\real\func_\unary\be_\IDerivable.cs" />
-    <Compile Include="nilnul0\num\real\func_\unary\be_\Lipschiz.cs" />
-    <Compile Include="Func.cs" />
+    <Compile Include="nilnul0\num\real\fn\IBorderied.cs" />
+    <Compile Include="nilnul0\num\real\fn\INeighbored.cs" />
+    <Compile Include="nilnul0\num\real\fn\ISpanned.cs" />
+    <Compile Include="nilnul0\num\real\fn\IIntervaled.cs" />
+    <Compile Include="nilnul0\num\real\fn\intervaled\Integral.cs" />
+    <Compile Include="nilnul0\num\real\fn\neighbored\Derivative.cs" />
+    <Compile Include="nilnul0\num\real\fn\Spanned4dblI.cs" />
+    <Compile Include="nilnul0\num\real\fn\neighbored_\Integrable4dblI.cs" />
+    <Compile Include="nilnul0\num\real\fn\neighbored_\integrable\_IntegralX.cs" />
+    <Compile Include="nilnul0\num\real\fn\neighbored_\integrable\_MeanX.cs" />
+    <Compile Include="nilnul0\num\real\fn\neighbored_\IIntegralable.cs" />
+    <Compile Include="nilnul0\num\real\fn\neighbored_\_integrable_\Antiderivative4dblI.cs" />
+    <Compile Include="nilnul0\num\real\fn\stream\series_\Weierstrass.cs" />
+    <Compile Include="nilnul0\num\real\fn\_neighbored_\Neighbor4dblI.cs" />
+    <Compile Include="nilnul0\num\real\fn_\DerivableI.cs" />
+    <Compile Include="nilnul0\num\real\fn_\eg_\VonMangoldt.cs" />
+    <Compile Include="nilnul0\num\real\fn_\elemental\neighbored\antideriv_\ByRischAlgo.cs" />
+    <Compile Include="nilnul0\num\real\fn_\Heaviside.cs" />
+    <Compile Include="nilnul0\num\real\fn_\IElementary.cs" />
+    <Compile Include="nilnul0\num\real\fn_\IFiniteTgtNil.cs" />
+    <Compile Include="nilnul0\num\real\fn_\IIntegrable.cs" />
+    <Compile Include="nilnul0\num\real\fn_\INil8some.cs" />
+    <Compile Include="nilnul0\num\real\fn_\Logistic.cs" />
+    <Compile Include="nilnul0\num\real\fn_\strict\solve_\_newton9raphson_\_ByDividingDerivX.cs" />
+    <Compile Include="nilnul0\num\real\fn_\strict\solve_\_newton9raphson_\NewFolder1\_Newton9raphsonX.cs" />
+    <Compile Include="nilnul0\num\real\fn_\mount_\Highland.cs" />
+    <Compile Include="nilnul0\num\real\fn_\nil8finite_\INil8some.cs" />
+    <Compile Include="nilnul0\num\real\fn_\polynomial\Degree.cs" />
+    <Compile Include="nilnul0\num\real\fn_\constant_\INil.cs" />
+    <Compile Include="nilnul0\num\real\fn_\polynomial_\IConstant.cs" />
+    <Compile Include="nilnul0\num\real\fn_\polynomial_\ILinear.cs" />
+    <Compile Include="nilnul0\num\real\fn_\polynomial_\IMonic.cs" />
+    <Compile Include="nilnul0\num\real\fn_\polynomial_\IMonomial.cs" />
+    <Compile Include="nilnul0\num\real\fn_\polynomial_\INil8five.cs" />
+    <Compile Include="nilnul0\num\real\fn_\polynomial_\INil8four.cs" />
+    <Compile Include="nilnul0\num\real\fn_\polynomial_\INil8one.cs" />
+    <Compile Include="nilnul0\num\real\fn_\polynomial_\INil8some.cs" />
+    <Compile Include="nilnul0\num\real\fn_\polynomial_\INil8three.cs" />
+    <Compile Include="nilnul0\num\real\fn_\polynomial_\INil8two.cs" />
+    <Compile Include="nilnul0\num\real\fn_\polynomial_\IStd.cs" />
+    <Compile Include="nilnul0\num\real\fn_\linear_\Increase.cs" />
+    <Compile Include="nilnul0\num\real\fn_\linear_\Increment.cs" />
+    <Compile Include="nilnul0\num\real\fn_\polynomial_\monomial_\constant_\xpn_\INil.cs" />
+    <Compile Include="nilnul0\num\real\fn_\polynomial_\monomial_\IMonic.cs" />
+    <Compile Include="nilnul0\num\real\fn_\rational_\IInvertal.cs" />
+    <Compile Include="nilnul0\num\real\fn_\rational_\invertal_\OverIncrement.cs" />
+    <Compile Include="nilnul0\num\real\fn_\_arctg\Series.cs" />
+    <Compile Include="nilnul0\num\real\fn_\_arctg\_series\_terms\Coefs.cs" />
+    <Compile Include="nilnul0\num\real\fn_\_derivable_\Derivative4dblI.cs" />
+    <Compile Include="nilnul0\num\real\fn\src\be_\IDerivable1st.cs" />
+    <Compile Include="nilnul0\num\real\fn\be_\Lipschiz.cs" />
+    <Compile Include="nilnul0\num\real\Func.cs" />
     <Compile Include="IIntegral.cs" />
     <Compile Include="nilnul0\num\real\func_\on_\Finite.cs" />
     <Compile Include="nilnul0\num\real\func_\sin\iterated_\Qin.cs" />
     <Compile Include="nilnul0\num\real\func_\sin\iterated_\Rin.cs" />
     <Compile Include="nilnul0\num\real\func_\taylorExpansioN_\fail_\ExpMinus1PerParSquar.cs" />
-    <Compile Include="nilnul0\num\real\func_\unary_\Sinc.cs" />
+    <Compile Include="nilnul0\num\real\fn_\Sinc.cs" />
     <Compile Include="nilnul0\num\real\func_\XSquare__Sin_XInverse.cs" />
     <Compile Include="nilnul0\num\real\func_\Discretize.cs" />
     <Compile Include="nilnul0\num\real\func_\eg_\IntegratableButAbsLowerBoundNonZero.cs" />
-    <Compile Include="nilnul0\num\real\func_\Erf.cs" />
     <Compile Include="nilnul0\num\real\func_\segmented_\Exp_MinusOneOverSquarWhenPositive.cs" />
     <Compile Include="nilnul0\num\real\func_\Sigmoid.cs" />
     <Compile Include="nilnul0\num\real\expr_\equiv_\Prod__Sin_n_X___eq___nDiv2Pow_nMius1.cs" />
+    <Compile Include="nilnul0\num\real\pred_\comp_\Cauchy.cs" />
+    <Compile Include="nilnul0\num\real\pred_\polynomial_\cubic\ISolve.cs" />
+    <Compile Include="nilnul0\num\real_\unneg\fn_\increase_\polyline_\_OriginatedX.cs" />
+    <Compile Include="IPar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="nilnul0\num\real\fn\satisfic_\Addable.cs" />
+    <Compile Include="src\be_\contin_\IDifferentiable8total.cs" />
+    <Compile Include="src\be_\IContinuous.cs" />
+    <Compile Include="src\deriv2nds_\mixed\be_\IContinuous4all.cs" />
+    <Compile Include="src\deriv2nd_\IMixedPartialDerivative.cs" />
+    <Compile Include="src\deriv2nd_\IUnmixedPartialDerivative.cs" />
+    <Compile Include="src\deriv1sts\be_\IContinuous.cs" />
+    <Compile Include="src\deriv1sts\be_\IExistant.cs" />
+    <Compile Include="src\IDerivative2nd.cs" />
+    <Compile Include="src\xpn_\defer_\INabla.cs" />
+    <Compile Include="src\IDerivative1st.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="be_\" />
+    <Folder Include="co_\" />
     <Folder Include="eg_\" />
     <Folder Include="eq_\" />
-    <Folder Include="nilnul0\num\real\func_\unary\neighbored_\integrable\integral\" />
-    <Folder Include="nilnul0\num\real\func_\unary\spanned\" />
-    <Folder Include="nilnul0\num\real\func_\unary\stream_\" />
-    <Folder Include="stream_\" />
+    <Folder Include="nilnul0\num\real\expr_\algebraic_\quadratic_\" />
+    <Folder Include="nilnul0\num\real\fn\calc_\unary\" />
+    <Folder Include="nilnul0\num\real\fn\calc_\unary_\derive\phrase_\" />
+    <Folder Include="nilnul0\num\real\fn\deriv\theorem_\" />
+    <Folder Include="nilnul0\num\real\fn\neighbored_\integrable\integral\" />
+    <Folder Include="nilnul0\num\real\fn\of_\" />
+    <Folder Include="nilnul0\num\real\fn\op_\derive\" />
+    <Folder Include="nilnul0\num\real\fn\satisfic_\addable_\" />
+    <Folder Include="nilnul0\num\real\fn\seq_\orthonorm_\complete_\fourier\expand\at_\discountinuity\" />
+    <Folder Include="nilnul0\num\real\fn_\betwixt\" />
+    <Folder Include="nilnul0\num\real\fn_\claspy_\continuous_\quasislopy_\" />
+    <Folder Include="nilnul0\num\real\fn_\claspy_\differentiable\" />
+    <Folder Include="nilnul0\num\real\fn_\claspy_\integrable\" />
+    <Folder Include="nilnul0\num\real\fn_\convex\_min_\" />
+    <Folder Include="nilnul0\num\real\fn_\monotone_\strict\be_\nil\" />
+    <Folder Include="nilnul0\num\real\fn_\nil8finite_\nil8some_\" />
+    <Folder Include="nilnul0\num\real\fn_\odd_\pwc\" />
+    <Folder Include="nilnul0\num\real\fn_\polynomial_\monic_\" />
+    <Folder Include="nilnul0\num\real\fn_\pwc\expand_\fourier\" />
+    <Folder Include="nilnul0\num\real\fn_\pwc_\sign\expand_\" />
+    <Folder Include="nilnul0\num\real\fn_\uxp_\" />
+    <Folder Include="nilnul0\num\real\func_\algebraic\" />
+    <Folder Include="nilnul0\num\real\func_\algebraic_\monomial_\" />
+    <Folder Include="nilnul0\num\real\func_\rational_\" />
+    <Folder Include="nilnul0\num\real\pred_\comp_\_cauchy_\" />
+    <Folder Include="src\deriv1sts\be_\exist_\" />
+    <Folder Include="src\deriv2nds\be_\" />
+    <Folder Include="src\deriv2nds_\mixed\be_\_shuffleable_\eg_\" />
+    <Folder Include="src\_deriv2nds_\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -250,12 +596,10 @@
     <nilnulDate>$([System.Text.RegularExpressions.Regex]::Match($(nilnulTime), $(nilnulPattern4date)))</nilnulDate>
     <nilnulPattern4clock>.{6}$</nilnulPattern4clock>
     <nilnulClock>$([System.Text.RegularExpressions.Regex]::Match($(nilnulTime), $(nilnulPattern4clock)))</nilnulClock>
-    <!--<nilnulClockPrefixed>3$(nilnulClock)</nilnulClockPrefixed>-->
-    <!--prepended to avoid leading nil. 3 is used rather than 1,or 2, to avoid visual confusion with hours as hours cannot begin with 3.
-	Or we can choose from 1-9, such that each number means something.
-	-->
-    <nilnulPattern4prefixed>([1-9].{0,4})?.$</nilnulPattern4prefixed>
-    <nilnulClockPrefixed>$([System.Text.RegularExpressions.Regex]::Match($(nilnulClock), $(nilnulPattern4prefixed)))</nilnulClockPrefixed>
+    <nilnulClockCollapsed>$(nilnulClock.TrimStart('0'))</nilnulClockCollapsed>
+    <_nilnulClockPrefixed>.$(nilnulClockCollapsed)</_nilnulClockPrefixed>
+    <nilnulClockPrefixed>$(_nilnulClockPrefixed.TrimEnd('.'))</nilnulClockPrefixed>
+    <nilnulPatchRevision>$(nilnulDate)$(nilnulClockPrefixed)</nilnulPatchRevision>
   </PropertyGroup>
   <PropertyGroup>
     <PostBuildEventDependsOn>
@@ -264,18 +608,30 @@
 </PostBuildEventDependsOn>
     <PostBuildEvent>echo ConfigurationName is $(ConfigurationName)
 if $(ConfigurationName) == Release (
-	"NuGet.exe" pack "$(ProjectPath)" -Prop Configuration=$(ConfigurationName) -Exclude **/*.tt -Version @(MajorMinor).$(nilnulDate).$(nilnulClockPrefixed)
-	"NuGet.exe" push $(TargetName).@(MajorMinor).$(nilnulDate).$(nilnulClockPrefixed).nupkg -Source local
-	"NuGet.exe" push $(TargetName).@(MajorMinor).$(nilnulDate).$(nilnulClockPrefixed).nupkg -Source my
+	"NuGet.exe" pack "$(ProjectPath)" -Prop Configuration=$(ConfigurationName) -Exclude **/*.tt -Version @(MajorMinor).$(nilnulPatchRevision)
+	"NuGet.exe" push $(TargetName).@(MajorMinor).$(nilnulPatchRevision).nupkg -SkipDuplicate -Source local
+	"NuGet.exe" push $(TargetName).@(MajorMinor).$(nilnulPatchRevision).nupkg -SkipDuplicate -Source nuget
+	"NuGet.exe" push $(TargetName).@(MajorMinor).$(nilnulPatchRevision).nupkg -SkipDuplicate -Source my
 ) ELSE (
 	if  $(ConfigurationName)==Symbol (
-		"NuGet.exe" pack "$(ProjectPath)" -Symbols -Prop Configuration=$(ConfigurationName) -Exclude **/*.tt -Version @(MajorMinor).$(nilnulDate).$(nilnulClockPrefixed)
-		"NuGet.exe" push $(TargetName).@(MajorMinor).$(nilnulDate).$(nilnulClockPrefixed).symbols.nupkg -SkipDuplicate -Source local
-		"NuGet.exe" push $(TargetName).@(MajorMinor).$(nilnulDate).$(nilnulClockPrefixed).symbols.nupkg -SkipDuplicate -Source my
+		"NuGet.exe" pack "$(ProjectPath)" -Symbols -Prop Configuration=$(ConfigurationName) -Exclude **/*.tt -Version @(MajorMinor).$(nilnulPatchRevision)
+		"NuGet.exe" push $(TargetName).@(MajorMinor).$(nilnulPatchRevision).symbols.nupkg -SkipDuplicate -Source local
+		"NuGet.exe" push $(TargetName).@(MajorMinor).$(nilnulPatchRevision).symbols.nupkg -SkipDuplicate -Source my
+		"NuGet.exe" push $(TargetName).@(MajorMinor).$(nilnulPatchRevision).symbols.nupkg -SkipDuplicate -Source nuget
 	)
 	if  $(ConfigurationName)==Nuget (
-		"NuGet.exe" pack "$(ProjectPath)"  -Prop Configuration=$(ConfigurationName) -Exclude **/*.tt -Version @(MajorMinor).$(nilnulDate).$(nilnulClockPrefixed)
-		"NuGet.exe" push $(TargetName).@(MajorMinor).$(nilnulDate).$(nilnulClockPrefixed).nupkg -SkipDuplicate -Source nuget.org
+		"NuGet.exe" pack "$(ProjectPath)"  -Prop Configuration=$(ConfigurationName) -Exclude **/*.tt -Version @(MajorMinor).$(nilnulPatchRevision)
+		"NuGet.exe" push $(TargetName).@(MajorMinor).$(nilnulPatchRevision).nupkg -SkipDuplicate -Source nuget.org
+	)
+	if  $(ConfigurationName)==Dev2nuget (
+		"NuGet.exe" pack "$(ProjectPath)"  -Prop Configuration=$(ConfigurationName) -Exclude **/*.tt -Version @(MajorMinor).$(nilnulPatchRevision)-dev
+		"NuGet.exe" push $(TargetName).@(MajorMinor).$(nilnulPatchRevision)-dev.nupkg -SkipDuplicate -Source nuget.org
+	)
+	if  $(ConfigurationName)==Sym2nuget (
+		"NuGet.exe" pack "$(ProjectPath)"  -Prop Configuration=$(ConfigurationName) -Exclude **/*.tt -Version @(MajorMinor).$(nilnulPatchRevision)-sym
+		"NuGet.exe" push $(TargetName).@(MajorMinor).$(nilnulPatchRevision)-sym.nupkg -SkipDuplicate -Source local
+		"NuGet.exe" push $(TargetName).@(MajorMinor).$(nilnulPatchRevision)-sym.nupkg -SkipDuplicate -Source my
+		"NuGet.exe" push $(TargetName).@(MajorMinor).$(nilnulPatchRevision)-sym.nupkg -SkipDuplicate -Source nuget.org
 	)
 )</PostBuildEvent>
   </PropertyGroup>
@@ -283,12 +639,19 @@ if $(ConfigurationName) == Release (
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105.The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\(packages)\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\(packages)\EntityFramework.6.4.4\build\EntityFramework.props'))" />
-    <Error Condition="!Exists('..\..\(packages)\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\(packages)\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
-    <Error Condition="!Exists('..\..\(packages)\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\(packages)\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+    <Error Condition="!Exists('..\..\.deps\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\.deps\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets'))" />
+    <Error Condition="!Exists('..\..\.deps\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\.deps\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+    <!--<Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+    <Error Condition="!Exists('..\..\.deps\EntityFramework.6.5.1\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\.deps\EntityFramework.6.5.1\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\..\.deps\EntityFramework.6.5.1\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\.deps\EntityFramework.6.5.1\build\EntityFramework.targets'))" />-->
   </Target>
-  <Import Project="..\..\(packages)\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\..\(packages)\EntityFramework.6.4.4\build\EntityFramework.targets')" />
-  <Import Project="..\..\(packages)\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\(packages)\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <!--<Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />-->
+  <Import Project="packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <Import Project="..\..\.deps\EntityFramework.6.5.1\build\EntityFramework.targets" Condition="Exists('..\..\.deps\EntityFramework.6.5.1\build\EntityFramework.targets')" />
+  <Import Project="..\..\.deps\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\..\.deps\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" />
+  <Import Project="..\..\.deps\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\.deps\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

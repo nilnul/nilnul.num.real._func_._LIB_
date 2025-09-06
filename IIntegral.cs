@@ -1,4 +1,4 @@
-﻿namespace nilnul.num.real
+namespace nilnul.num.real.func
 {
 	/// <summary>
 	/// 
@@ -6,4 +6,7 @@
 	public interface IIntegral {
 
 	}
+
+
+
 }

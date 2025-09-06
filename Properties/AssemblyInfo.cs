@@ -1,6 +1,16 @@
+using System;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+
+
+///[Obsolete("
+///  the "func" namespace is too general and shall be kept in nilnul.num.real;
+///  for calculus, use nilnul.math._calculus_, which is more specific and better namespace as it would not act as a type to refere to some concrete implementations;
+/// ")]
+///
+/// still we need to study function's characteristics itself that is not calculus, such as its plot, continuous, monotocity, skewness, etc;
+/// or shall we include this in nilnul.num.real? 
 
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
